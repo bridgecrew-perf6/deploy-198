@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Ejercicios</title>
+  <!--implementacion bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!--implementar css-->
+  <link rel="stylesheet" href="../css/registrarEjercicio.css">
+  <link rel="stylesheet" href="../css/style2.css">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="../../assets/css/plantilla.css" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/98af28cb8a.js" crossorigin="anonymous"></script>
+  <link href="../import/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+  <!--implementar js de bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+    <header id="header" class="fixed-top d-flex align-items-center  header-transparent ">
+      <div class="container d-flex align-items-center justify-content-between">
+          <div class="col col-lg-2">
+              <nav id="navbar" class="navbar">
+                  <ul>
+                      <li><a class="nav-link scrollto active" href="../html/index.html" id="volver">Volver</a></li>
+                  </ul>
+                  <i class="bi bi-list mobile-nav-toggle"></i>
+              </nav><!-- .navbar -->
+          </div>
+          <div class="col-auto-md">
+              <div class="rutinas align-text-top">
+                  <h1>Registrar ejercicio</h1>
+              </div>
+          </div>
+          <div class="col col-lg-2">
+    
+          </div>
+      
+      </div>
+    </header><!-- End Header -->
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container" id="form">
+    <form class="row g-3 needs-validation" novalidate action="ejerciciosFisicos.html" method="get" name="regEjer" id="formulario">
+      <div class="col-md-12">
+        <label for="nombre" class="form-label" >Nombre del ejercicio</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required> 
+        <div class="invalid-feedback">
+          *Complete el campo. *El nombre debe tener minimo 5 y maximo 50 letras.
+          <br>*No se permite números ni caracteres especiales.
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label for="descripcion" class="form-label">Descripción del ejercicio</label>
+        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción"rows="2" minlength="50" maxlength="500" onkeyup="this.value=this.value.replace(/^\s+/,'');" required></textarea>
+        <div class="invalid-feedback">
+          *Complete el campo.
+          *La descripcion debe tener minimo 50 y maximo 500 caracteres.
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label for="seleccione" class="form-label">Seleccione el grupo muscular principal del ejercicio</label>
+        <select class="form-select form-select-sm" id="seleccione" name="musculo" required>
+          <option selected value="">Seleccione</option>
+          <option value="Pectorales">Pectorales</option>
+          <option value="Trapecios">Trapecios</option>
+          <option value="Espalda">Espalda</option>
+          <option value="Abdominales">Abdominales</option>
+          <option value="Deltoides">Deltoides</option>
+          <option value="Tríceps">Tríceps</option>
+          <option value="Antebrazos">Antebrazos</option>
+          <option value="Bíceps Femorales">Bíceps Femorales</option>
+          <option value="Aductores">Aductores</option>
+          <option value="Bíceps">Bíceps</option>
+          <option value="Abdomen">Abdomen</option>
+          <option value="Pantorrilla">Pantorrilla</option>
+          <option value="Glúteos">Glúteos</option>
+          <option value="Cuádriceps">Cuádriceps</option>
+          <option value="Gemelos">Gemelos</option>
+          <option value="Dorsales">Dorsales</option>
+        </select>
+        <div class="invalid-feedback">
+          *Seleccione un elemento de la lista.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="formGif" class="form-label">Inserte un GIF del ejercicio</label>
+        <input type="file" class="form-control" id="formGif" name="gif" accept="image/gif"onchange="return validarGif()" required>
+        <div class="invalid-feedback">
+          *Inserte un archivo .gif
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="min">Elija la duración del ejercicio </label>
+        <div class="row">
+          <div class="col-md-3" id="minCol">
+            <input type="number" class="form-control" placeholder="min." id="min" name="min" min="1" max="6"onkeypress="return validarMinutos(event)" required>
+            <div class="invalid-feedback">
+              *1 a 6 min.
+            </div>
+          </div>
+
+          <div class="col-md-3" >
+            <input type="number" class="form-control" placeholder="seg." id="seg" name="seg" min="0" max="59"onkeypress="return validarSegundos(event)"onchange="return dosDigitos()" required >
+            <div class="invalid-feedback">
+              *0 a 59 seg
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br><br><br><br>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button class="btn btn-primary" type="submit" name="Registrar" id="btnRegistrar">Registrar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <br><br>
+
+  <script src="../js/registro.js"></script>
+  <script type="module" src="../js/registrarEjercicio.js"></script>
+
+  <!-- import archivos JS -->
+  <script src="../import/aos/aos.js"></script>
+  <script src="../import/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!--archivo JS principal-->
+  <script src="../../assets/js/plantilla.js"></script>
+</body>
+</html>
