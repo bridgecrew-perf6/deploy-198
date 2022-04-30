@@ -11,20 +11,12 @@ var url = ""+window.location.href;
 var rutina = limpiar(url) ;
 
 function limpiar(palabra){
-    var res ="";
-    var bandera = false;
-    for(let i=0;i<palabra.length;i++){
-        if(palabra[i]=="#"){
-            bandera= true;
-            i++;
-        }
-
-        if(bandera){
-            res+=palabra[i];
-        }
-    }
-    return res;
+ 
+  var pos2 = palabra.indexOf("-");
+  var res2= palabra.substring(pos2+1,palabra.length);;
+  return res2;
 }
+
 let btn = document.querySelector('#start');
 //btn.style.visibility = "hidden";
 
@@ -97,7 +89,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
     // Tiempo de preparacion 10 seg antes de iniciar rutina
     const startCountdown = document.querySelector(".title");
-    let preparacion = 3;
+    let preparacion = 10;
     let preparar = setInterval(() => {
       nombreEjercicio.innerHTML = `${rutina}`;
       
@@ -143,11 +135,20 @@ window.addEventListener("DOMContentLoaded", async (e) => {
             clearInterval(rutina);
             
             formulario2.innerHTML = `
-            <h1 class="title" >¡Felicitaciones!</h1>
+            
             <div class="inputs-container">
-              
-              <button class="btn" type="submit">Repetir</button>
-              
+              <li id="botonesfinrutina">
+              <button class="btn" id="listaEjerFinRutina" type="submit">Lista De Rutinas</button>
+              </li>
+              <li>
+              <div id="divdefelicitacion">
+                <img id="imagentrofeo" src="../img/galeria/trofeofinrutina.jpg" class="img-fluid" alt="">
+                <h1 class="felicitacion" >¡Felicitaciones!</h1>
+              </div>
+              </li>
+              <li id="botonesfinrutina">
+              <button class="btn" id="repetir" type="submit">Repetir</button>
+              </li>
               </div>  
             `;
             nombreEjercicio.innerHTML = "Rutina Completada";
@@ -185,7 +186,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
           }
         } 
       }, 1000);
-    }, 4000);
+    }, 11000);
 
     // Pinta tiempo en rojo a los 10 segundos sino lo deja en verde
 

@@ -3,8 +3,8 @@
 
 let con = true
 function verClave() {
-  let ver = document.getElementById("ver");
-  let clave = document.getElementById("clave")
+  let ver = document.getElementById("ver_clave");
+  let clave = document.getElementById("contraseñaAM")
   let icono = document.getElementById("icono")
   if (con == true) {
     clave.type = "text"
@@ -22,9 +22,20 @@ function verClave() {
 function ingreso() {
 
   var email2 = document.getElementById('email2').value;
-  var contrasena2 = document.getElementById('clave').value;
+  var contrasena2 = document.getElementById('contraseñaAM').value;
 
   firebase.auth().signInWithEmailAndPassword(email2, contrasena2)
+    .then(async (userCredential) => {
+      var aux =""+ email2;
+      aux.toUpperCase();
+      if (aux == "JUANPE@GMAIL.COM"){
+        
+        observador();
+      }else{
+        swal("No es un usuario Adulto Mayor","","error");
+      }
+      
+    })
     .catch(function (error) {
 
       if (email2 == "" && contrasena2 == "") {
@@ -45,7 +56,7 @@ function ingreso() {
 
       }
     });
-  observador();
+  
 }
 
 function observador() {
@@ -82,7 +93,7 @@ function aparece(user) {
     //<button onclick="cerrar()">Cerrar sesión</button> 
     //<a href="userName.html" >
     //`
-    window.location.href = "index.html#AdultoMayor";
+    window.location.href = "home.html#AdultoMayor";
   }
 }
 
@@ -90,7 +101,7 @@ function cerrar() {
   firebase.auth().signOut()
     .then(function () {
       console.log('Saliendo...')
-      window.location = "../html/../../index.html";
+      window.location = "../../index.html";
     })
     .catch(function (error) {
       console.log(error)
@@ -112,7 +123,7 @@ function link() {
 
 }
 
-const tasksContainer = document.getElementById("cont");
+/*const tasksContainer = document.getElementById("cont");
 
 firebase.auth().onAuthStateChanged(function (user) {
 
@@ -128,4 +139,4 @@ firebase.auth().onAuthStateChanged(function (user) {
          
         `;
 
-});
+});*/

@@ -12,6 +12,10 @@
     font-family: Verdana !important;
     font-style: Verdana !important;
   }
+
+  #again{
+    color: white !important;
+  }
   body {
     height: 100vh;
     margin: auto;
